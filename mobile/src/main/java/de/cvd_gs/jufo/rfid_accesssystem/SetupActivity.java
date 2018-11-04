@@ -14,6 +14,10 @@ import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup0;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup1;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup0;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup1;
+import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup2;
+import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup3;
+import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup4;
+import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup5;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.SetupViewModel;
 
 public class SetupActivity extends AppCompatActivity {

@@ -1,18 +1,19 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModelProviders;
-
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
+import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
+import de.cvd_gs.jufo.rfid_accesssystem.SetupActivity;
 
 public class Setup1 extends Fragment {
     private SetupViewModel mViewModel;
@@ -23,7 +24,8 @@ public class Setup1 extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final View setup1 = inflater.inflate(R.layout.setup_fragment1, container, false);
         final EditText editURL = setup1.findViewById(R.id.editTextServerURL);
@@ -38,7 +40,8 @@ public class Setup1 extends Fragment {
                         mViewModel.setForward(false);
                     }
                     else {
-                        mViewModel.setForward(true);
+                        Button buttonForward = new SetupActivity().buttonForward;
+                        buttonForward.setEnabled(true);
                     }
                 }
             }
