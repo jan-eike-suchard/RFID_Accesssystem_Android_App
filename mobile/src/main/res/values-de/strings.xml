@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RFID-Accesssystem</string>
+    <string name="login_text_useNFC">oder benutzen sie ihren NFC Tag</string>
+    <string name="login_button_signin">Anmelden</string>
+    <string name="login_hint_password">Passwort</string>
+    <string name="login_hint_username">Benutzername</string>
+    <string name="title_activity_login">Anmeldung erforderlich</string>
+    <string name="nfc_unavailable">Die NFC-basierte Anmeldung ist deaktiviert, da der NFC Chip ausgeschaltet ist</string>
+    <string name="nfc_read">Ihr NFC Tag wurde eingelesen</string>
+    <string name="setup_back">Zurück</string>
+    <string name="setup_next">Weiter</string>
+    <string name="setup_welcome">Herzlich Willkommen in der App für das kontaktlose Schlosssystem ihres Arbeitsplatzes. Da Sie die App zum ersten Mal geöffnet haben, wird dieser Assistent sie durch die Einrichtung führen. Bitte halten Sie ihre Login Daten und ihre Karte bereit.\nSie können sich zwischen zwei Einrichtungsmethoden entscheiden:\n1. Automatisches Setup\n2. Manuelles Setup\nWenn Sie das automatische Setup auswählen, müssen Sie nur einen QR Code aus der Weboberfäche des Verwaltungssystems scannen. Wenn Sie jedoch das manuelle Setup bevorzugen, müssen Sie alle Daten per Hand eingeben.</string>
+    <string name="setup_selectManual">Manuelles Setup</string>
+    <string name="setup_selectAuto">Automatisches Setup</string>
+    <string name="qr_red">QR Code erfolgreich eingelesen</string>
+    <string name="summary_serverAddress">Serveradresse</string>
+    <string name="summary_serverPort">Port</string>
+    <string name="summary_connectiontype">Verbindungsart</string>
+    <string name="summary_username">Benutzername</string>
+    <string name="summary_nfcLogin">NFC Login</string>
+    <string name="summary_openNFC">NFC Türöffner</string>
+    <string name="connectionSecure">Gesichert</string>
+    <string name="connectionInsecure">Ungesichert</string>
+    <string name="nfcLogin_enabled">Aktiviert</string>
+    <string name="nfcLogin_disabled">Deaktiviert</string>
+    <string name="nfcOpen_enabled">Aktiviert</string>
+    <string name="nfcOpen_disabled">Deaktiviert</string>
+    <string name="notSupported">Nicht unterstützt</string>
+    <string name="setup1_serverexplanation">Da Sie die manuelle Konfiguration ausgewählt haben, müssen Sie die Adresse Ihres Servers eingeben.\nBeachten Sie bitte, dass die Adresse entweder mit \'http://\' oder \'https://\' beginnen muss.\nFalls Ihnen diese Informationen nicht vorliegen sollten, wenden Sie sich an ihren Administrator</string>
+</resources>

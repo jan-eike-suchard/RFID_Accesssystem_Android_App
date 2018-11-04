@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">RFID-Accesssystem</string>
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Login needed</string>
+    <string name="login_hint_username">Username</string>
+    <string name="login_hint_password">Password</string>
+    <string name="login_button_signin">Login</string>
+    <string name="login_text_useNFC">or use your NFC tag</string>
+    <string name="nfc_unavailable">The NFC-based login is deactivated, since the NFC function was disabled</string>
+    <string name="nfc_read">Your NFC tag has been read</string>
+    <string name="setup_back">Back</string>
+    <string name="setup_next">Next</string>
+    <string name="setup_welcome">Welcome in the app for your workplace\'s contactless lock system. Since you started this app for the first time, this setup guide will lead you through the setup process. Please hold your login information and your chipcard steady.\nYou can choose between two setup modes:\n1. Automatic Setup\n2. Manual Setup\nIn the automatic setup you just scan a QR Code, generated at the Webconfig, and the configuration is done for you. In contary the manual setup needs all information enterd by hand.</string>
+    <string name="setup_selectManual">Manual setup</string>
+    <string name="setup_selectAuto">Automatic setup</string>
+    <string name="qr_red">QR Code successfully read</string>
+    <string name="summary_serverAddress">Server address</string>
+    <string name="summary_serverPort">Port</string>
+    <string name="summary_connectiontype">Connection Tpye</string>
+    <string name="summary_username">Username</string>
+    <string name="summary_nfcLogin">NFC Login</string>
+    <string name="summary_openNFC">Open doors via NFC</string>
+    <string name="connectionSecure">Secured</string>
+    <string name="connectionInsecure">unsecured</string>
+    <string name="nfcLogin_enabled">Enabled</string>
+    <string name="nfcLogin_disabled">Disabled</string>
+    <string name="nfcOpen_enabled">Enabled</string>
+    <string name="nfcOpen_disabled">Disabled</string>
+    <string name="notSupported">Not Supported</string>
+    <string name="setup1_serverexplanation">Since you selected the manual configuration, you need to enter the address of your server.\nPlease note, the address needs to begin with either \'http://\' or \'https://\'.\nIf you do not have this information, please contact your administrator.</string>
+    <string name="setup1_hintURL" />
+    <string name="urlInvalid">The entered url is invalid</string>
+    <string name="noURL">No vaild URL detected</string>
+    <string name="wrongCode">This type of code is not supported</string>
+    <string name="finishSetup">Finish Setup</string>
+
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "807650061466",
+    "firebase_url": "https://rfid-access-cvd.firebaseio.com",
+    "project_id": "rfid-access-cvd",
+    "storage_bucket": "rfid-access-cvd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807650061466:android:0b4aea83d09df5b7",
+        "android_client_info": {
+          "package_name": "de.cvd_gs.jufo.rfid_accesssystem"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807650061466-u8g34jpbr4c0rdk6o0tc0koh2dv1hkl6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.cvd_gs.jufo.rfid_accesssystem",
+            "certificate_hash": "57c2227a39b47579dee65ac2a7477532926b1517"
+          }
+        },
+        {
+          "client_id": "807650061466-f9u1e3467pnf49vn706pec08bkf3qnmg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUu9U-yBhYAm4lC6wR0dkPoQ3fLF5YAuY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807650061466-f9u1e3467pnf49vn706pec08bkf3qnmg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
