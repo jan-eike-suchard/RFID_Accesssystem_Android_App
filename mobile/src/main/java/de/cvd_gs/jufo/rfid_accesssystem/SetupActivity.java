@@ -1,18 +1,15 @@
 package de.cvd_gs.jufo.rfid_accesssystem;
 
-import androidx.lifecycle.ViewModelProviders;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import java.util.ArrayList;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup0;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup1;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup0;
@@ -27,13 +24,8 @@ public class SetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SetupViewModel.class);
-        final ArrayList<Fragment> fragmentsManual = new ArrayList<>();
-        fragmentsManual.add(new Setup1());
-        final ArrayList<Fragment> fragmentsAuto = new ArrayList<>();
-        fragmentsAuto.add(new AutoSetup0());
-        fragmentsAuto.add(new AutoSetup1());
         setContentView(R.layout.setup_activity);
+        mViewModel = ViewModelProviders.of(this).get(SetupViewModel.class);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, Setup0.newInstance())
@@ -48,27 +40,53 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int step = mViewModel.getCurrentStep();
-                if (step+1 > 0) {
-                    buttonBack.setEnabled(true);
-                    buttonBack.setVisibility(View.VISIBLE);
-                } else {
-                    buttonBack.setEnabled(false);
-                    buttonBack.setVisibility(View.INVISIBLE);
-
+                boolean autoConfiguration = mViewModel.getAutoconfig();
+                if (autoConfiguration)
+                {
+                    switch (step)
+                    {
+                        case 0:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0());
+                            break;
+                        case 1:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1());
+                            buttonForward.setText(R.string.finishSetup);
+                            buttonBack.setEnabled(false);
+                            break;
+                        case 2:
+                            Toast.makeText(getApplicationContext(), R.string.errorSteps, Toast.LENGTH_LONG).show();
+                            Intent restartApp = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                            restartApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            restartApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(restartApp);
+                            finish();
+                            break;
+                    }
                 }
-                Boolean autoSetup = mViewModel.getAutoconfig();
-                if (autoSetup) {
-                    fragmentManager.beginTransaction().replace(fragmentContainer, fragmentsAuto.get(step)).commit();
-                    progressBar.setProgress(step+1);
-                    progressBar.setMax(3);
-                    mViewModel.setCurrentStep(step+1);
+                else
+                {
+                    switch (step)
+                    {
+                        case 0:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1());
+                            break;
+                        case 1:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2());
+                            break;
+                        case 2:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3());
+                            break;
+                        case 3:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4());
+                            break;
+                        case 4:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5());
+                            break;
+                        case 5:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6());
+                            break;
+                    }
                 }
-                else {
-                    fragmentManager.beginTransaction().replace(fragmentContainer, fragmentsManual.get(step)).commit();
-                    progressBar.setProgress(step+1);
-                    mViewModel.setCurrentStep(step+1);
-                }
-
             }
         });
         buttonBack.setOnClickListener(new View.OnClickListener() {

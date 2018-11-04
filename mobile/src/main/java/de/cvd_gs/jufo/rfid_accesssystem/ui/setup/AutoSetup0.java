@@ -1,15 +1,6 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModelProviders;
-
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +12,9 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
@@ -58,7 +52,6 @@ public class AutoSetup0 extends Fragment implements ZXingScannerView.ResultHandl
             {
                 mViewModel.setAutoconfig_url(rawResult.getText());
                 Button buttonForward = getActivity().findViewById(R.id.buttonForward);
-                buttonForward.setEnabled(false);
                 buttonForward.performClick();
 
             }

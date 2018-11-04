@@ -33,5 +33,6 @@
     <string name="noURL">No vaild URL detected</string>
     <string name="wrongCode">This type of code is not supported</string>
     <string name="finishSetup">Finish Setup</string>
+    <string name="errorSteps">No more Steps available. Enjoy</string>
 
 </resources>

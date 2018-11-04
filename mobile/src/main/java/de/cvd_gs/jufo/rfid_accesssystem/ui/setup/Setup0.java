@@ -1,17 +1,17 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModelProviders;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
 
 public class Setup0 extends Fragment {
@@ -53,7 +53,7 @@ public class Setup0 extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(SetupViewModel.class);
+        mViewModel = ViewModelProviders.of(getActivity()).get(SetupViewModel.class);
 
     }
 
