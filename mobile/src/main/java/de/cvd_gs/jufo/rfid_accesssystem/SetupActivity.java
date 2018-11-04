@@ -2,6 +2,7 @@ package de.cvd_gs.jufo.rfid_accesssystem;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,6 +19,7 @@ import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup2;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup3;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup4;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup5;
+import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup6;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.SetupViewModel;
 
 public class SetupActivity extends AppCompatActivity {
@@ -44,16 +46,18 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int step = mViewModel.getCurrentStep();
+                Log.d("CURRENT STEP", String.valueOf(step));
                 boolean autoConfiguration = mViewModel.getAutoconfig();
+                Log.d("Automatic config status", String.valueOf(autoConfiguration));
                 if (autoConfiguration)
                 {
                     switch (step)
                     {
                         case 0:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1()).commit();
                             buttonForward.setText(R.string.finishSetup);
                             buttonBack.setEnabled(false);
                             break;
@@ -72,22 +76,22 @@ public class SetupActivity extends AppCompatActivity {
                     switch (step)
                     {
                         case 0:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1()).commit();
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2()).commit();
                             break;
                         case 2:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3()).commit();
                             break;
                         case 3:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4()).commit();
                             break;
                         case 4:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5()).commit();
                             break;
                         case 5:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6());
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6()).commit();
                             break;
                     }
                 }
@@ -97,7 +101,7 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int step = mViewModel.getCurrentStep();
-
+                //Log.d
             }
         });
     }
