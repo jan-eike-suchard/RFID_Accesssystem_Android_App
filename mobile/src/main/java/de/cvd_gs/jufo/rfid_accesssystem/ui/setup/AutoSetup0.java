@@ -1,5 +1,7 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +14,9 @@ import android.widget.Toast;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
@@ -21,11 +25,38 @@ import me.dm7.barcodescanner.zxing.ZXingScannerView;
 public class AutoSetup0 extends Fragment implements ZXingScannerView.ResultHandler {
     private ZXingScannerView mScannerView;
     private SetupViewModel mViewModel;
+    private boolean camera_activated;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mScannerView = new ZXingScannerView(getActivity());
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            requestPermissions(new String[] {Manifest.permission.CAMERA}, 1);
+        }
+        if (camera_activated)
+        {
+            return mScannerView;
+        }
+        else
+        {
+            getFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
+            mViewModel.setAutoconfig(false);
+        }
         return mScannerView;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults.length >  0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
+            camera_activated = true;
+        }
+        else
+        {
+            camera_activated = false;
+        }
     }
 
     @Override

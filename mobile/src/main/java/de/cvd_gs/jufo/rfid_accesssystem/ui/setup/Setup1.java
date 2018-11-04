@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.URLUtil;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -13,10 +12,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
-import de.cvd_gs.jufo.rfid_accesssystem.SetupActivity;
 
 public class Setup1 extends Fragment {
-    private SetupViewModel mViewModel;
+    private ManualSetupViewModel mViewModel;
 
     public static Setup1 newInstance() {
         return new Setup1();
@@ -37,11 +35,9 @@ public class Setup1 extends Fragment {
                     if (!URLUtil.isValidUrl(editURL.getText().toString()))
                     {
                         editURL.setError(getString(R.string.urlInvalid));
-                        mViewModel.setForward(false);
                     }
                     else {
-                        Button buttonForward = new SetupActivity().buttonForward;
-                        buttonForward.setEnabled(true);
+                        mViewModel.setServer_address("editURL");
                     }
                 }
             }
@@ -52,7 +48,7 @@ public class Setup1 extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(SetupViewModel.class);
+        mViewModel = ViewModelProviders.of(getActivity()).get(ManualSetupViewModel.class);
     }
 
     @Override
