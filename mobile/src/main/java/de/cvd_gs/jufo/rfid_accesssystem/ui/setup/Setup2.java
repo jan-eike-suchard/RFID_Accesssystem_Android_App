@@ -22,7 +22,7 @@ public class Setup2 extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         final View setup2 = inflater.inflate(R.layout.setup_fragment2, container, false);
-        //TODO: Implement control logic for port check
+
         return setup2;
     }
 

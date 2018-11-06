@@ -37,7 +37,7 @@ public class Setup1 extends Fragment {
                         editURL.setError(getString(R.string.urlInvalid));
                     }
                     else {
-                        mViewModel.setServer_address("editURL");
+                        mViewModel.setServer_address(editURL.getText().toString());
                     }
                 }
             }

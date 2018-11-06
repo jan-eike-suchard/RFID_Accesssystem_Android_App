@@ -36,5 +36,6 @@
     <string name="errorSteps">No more Steps available. Enjoy</string>
     <string name="setup1_server_reachable">Server address is valid and reachable</string>
     <string name="setup1_server_unreachable">The server address is vaild, but the server is not reachable by a Ping</string>
+    <string name="setup2_textPort">Please enter the Port for the webinterface.\nThe standard port is 80. If the server connection is secured via SSL and the certificate is valid use port 443</string>
 
 </resources>
