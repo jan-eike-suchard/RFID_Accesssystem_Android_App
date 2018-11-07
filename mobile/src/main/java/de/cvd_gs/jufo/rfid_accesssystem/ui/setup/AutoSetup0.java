@@ -11,6 +11,7 @@ import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
@@ -40,8 +41,10 @@ public class AutoSetup0 extends Fragment implements ZXingScannerView.ResultHandl
         }
         else
         {
+            Snackbar.make(getActivity().findViewById(R.id.setupLayout), R.string.cameraPermission, Snackbar.LENGTH_LONG).show();
             getFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
             mViewModel.setAutoconfig(false);
+            mViewModel.setCurrentStep(1);
         }
         return mScannerView;
     }

@@ -55,11 +55,12 @@ public class SetupActivity extends AppCompatActivity {
                     {
                         case 0:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 1:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1()).commit();
                             buttonForward.setText(R.string.finishSetup);
-                            buttonBack.setEnabled(false);
+                            buttonBack.setEnabled(true);
                             break;
                         case 2:
                             Toast.makeText(getApplicationContext(), R.string.errorSteps, Toast.LENGTH_LONG).show();
@@ -70,7 +71,8 @@ public class SetupActivity extends AppCompatActivity {
                             finish();
                             break;
                     }
-                    mViewModel.setCurrentStep(step++);
+                    step++;
+                    mViewModel.setCurrentStep(step);
                 }
                 else
                 {
@@ -78,24 +80,39 @@ public class SetupActivity extends AppCompatActivity {
                     {
                         case 0:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 1:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 2:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 3:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 4:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5()).commit();
+                            buttonBack.setEnabled(true);
                             break;
                         case 5:
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6()).commit();
+                            buttonForward.setText(R.string.finishSetup);
+                            buttonBack.setEnabled(true);
                             break;
+                        case 6:
+                            Intent restartApp = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                            restartApp.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            restartApp.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(restartApp);
+                            finish();
+
                     }
-                    mViewModel.setCurrentStep(step++);
+                    step++;
+                    mViewModel.setCurrentStep(step);
                 }
             }
         });
@@ -103,7 +120,62 @@ public class SetupActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int step = mViewModel.getCurrentStep();
-                //Log.d
+                Log.d("CURRENT STEP", String.valueOf(step));
+                boolean autoConfiguration = mViewModel.getAutoconfig();
+                Log.d("Automatic config status", String.valueOf(autoConfiguration));
+                if (autoConfiguration)
+                {
+                    switch (step)
+                    {
+                        case 0:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
+                            break;
+                        case 1:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
+                            buttonForward.setText(R.string.finishSetup);
+                            buttonBack.setEnabled(false);
+                            break;
+                        case 2:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1()).commit();
+                            break;
+                    }
+                    step--;
+                    mViewModel.setCurrentStep(step);
+                }
+                else
+                {
+                    switch (step)
+                    {
+                        case 1:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup0()).commit();
+                            buttonBack.setEnabled(false);
+                            break;
+                        case 2:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1()).commit();
+                            buttonBack.setEnabled(true);
+                            break;
+                        case 3:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2()).commit();
+                            buttonBack.setEnabled(true);
+                            break;
+                        case 4:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3()).commit();
+                            buttonBack.setEnabled(true);
+                            break;
+                        case 5:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4()).commit();
+                            buttonBack.setEnabled(true);
+                            break;
+                        case 6:
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5()).commit();
+                            buttonForward.setText(R.string.finishSetup);
+                            buttonBack.setEnabled(true);
+                            break;
+
+                    }
+                    step--;
+                    mViewModel.setCurrentStep(step);
+                }
             }
         });
     }
