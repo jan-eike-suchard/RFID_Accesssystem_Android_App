@@ -70,6 +70,7 @@ public class SetupActivity extends AppCompatActivity {
                             finish();
                             break;
                     }
+                    mViewModel.setCurrentStep(step++);
                 }
                 else
                 {
@@ -94,6 +95,7 @@ public class SetupActivity extends AppCompatActivity {
                             fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6()).commit();
                             break;
                     }
+                    mViewModel.setCurrentStep(step++);
                 }
             }
         });

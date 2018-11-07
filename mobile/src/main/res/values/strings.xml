@@ -36,5 +36,6 @@
     <string name="errorSteps">No more Steps available. Enjoy</string>
     <string name="setup1_server_reachable">Server address is valid and reachable</string>
     <string name="setup1_server_unreachable">The server address is vaild, but the server is not reachable by a Ping</string>
+    <string name="urlValid">The entered URL is valid</string>
 
 </resources>
