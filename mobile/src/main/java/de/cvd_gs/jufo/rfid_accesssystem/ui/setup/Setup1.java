@@ -1,11 +1,15 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.URLUtil;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,19 +31,35 @@ public class Setup1 extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         final View setup1 = inflater.inflate(R.layout.setup_fragment1, container, false);
         final EditText editURL = setup1.findViewById(R.id.editTextServerURL);
-        editURL.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        editURL.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (setup1.hasFocus())
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                boolean validURL = Patterns.WEB_URL.matcher(s).matches();
+                if (validURL)
                 {
-                    if (!URLUtil.isValidUrl(editURL.getText().toString()))
-                    {
-                        editURL.setError(getString(R.string.urlInvalid));
-                    }
-                    else {
-                        mViewModel.setServer_address(editURL.getText().toString());
-                    }
+                    mViewModel.setServer_address(s.toString());
+                    TextView textStatusURL = setup1.findViewById(R.id.textView5);
+                    textStatusURL.setText(R.string.urlValid);
+                    textStatusURL.setTextColor(Color.GREEN);
+                    editURL.setTextColor(Color.GREEN);
                 }
+                else
+                {
+                    TextView textStatusURL = setup1.findViewById(R.id.textView5);
+                    textStatusURL.setText(R.string.urlInvalid);
+                    textStatusURL.setTextColor(Color.RED);
+                    editURL.setTextColor(Color.RED);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         return setup1;

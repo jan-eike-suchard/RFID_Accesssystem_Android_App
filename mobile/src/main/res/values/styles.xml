@@ -12,6 +12,10 @@
         <item name="android:colorBackground">@color/colorBackground</item>
     </style>
 
-    <style name="ApplicationTheme" parent="Theme.AppCompat.Light" />
+    <style name="ApplicationTheme" parent="Theme.AppCompat.Light" >
+        <item name="android:textColorPrimary">@color/text_color_primary</item>
+        <item name="android:textColorSecondary">@color/text_color_secondary</item>
+        <item name="android:navigationBarColor">?android:attr/colorPrimaryDark</item>
+    </style>
 
 </resources>

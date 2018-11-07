@@ -15,5 +15,6 @@
     <color name="accent_material_dark">#64dd17</color>
     <color name="primary_material_light">#2196f3</color>
     <color name="primary_dark_material_light">#1976d2</color>
-    <color name="accent_material_light">#ffea00</color>
+    <color name="accent_material_light">#6200ea</color>
+    <color name="text_color_secondary">#7f000000</color>
 </resources>
