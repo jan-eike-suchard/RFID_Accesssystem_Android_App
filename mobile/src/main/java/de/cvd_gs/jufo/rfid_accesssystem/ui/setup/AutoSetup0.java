@@ -1,6 +1,5 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,13 +10,11 @@ import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.R;
@@ -31,21 +28,7 @@ public class AutoSetup0 extends Fragment implements ZXingScannerView.ResultHandl
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mScannerView = new ZXingScannerView(getActivity());
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-        {
-            requestPermissions(new String[] {Manifest.permission.CAMERA}, 1);
-        }
-        if (camera_activated)
-        {
-            return mScannerView;
-        }
-        else
-        {
-            Snackbar.make(getActivity().findViewById(R.id.setupLayout), R.string.cameraPermission, Snackbar.LENGTH_LONG).show();
-            getFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
-            mViewModel.setAutoconfig(false);
-            mViewModel.setCurrentStep(1);
-        }
+
         return mScannerView;
     }
 

@@ -39,5 +39,6 @@
     <string name="urlValid">The entered URL is valid</string>
     <string name="setup2_enterPort">Please enter the port, according to the port of the webinterface</string>
     <string name="cameraPermission">Camera permission missing. Continue with manual setup</string>
+    <string name="cameraPermissionGranted">Since the camera permission was granted you can now use the automatic setup</string>
 
 </resources>

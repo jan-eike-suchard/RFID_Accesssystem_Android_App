@@ -1,6 +1,9 @@
 package de.cvd_gs.jufo.rfid_accesssystem;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,7 +11,10 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup0;
@@ -178,6 +184,38 @@ public class SetupActivity extends AppCompatActivity {
                 }
             }
         });
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+        {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[] {Manifest.permission.CAMERA}, 1);
+            }
+        }
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+    {
+        switch (requestCode)
+        {
+            case 1:
+            {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+                {
+                    Snackbar.make(this.findViewById(R.id.setupLayout), R.string.cameraPermissionGranted, Snackbar.LENGTH_LONG).show();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
+                    mViewModel.setAutoconfig(false);
+                    mViewModel.setCurrentStep(1);
+                }
+                else
+                {
+                    Snackbar.make(this.findViewById(R.id.setupLayout), R.string.cameraPermission, Snackbar.LENGTH_LONG).show();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
+                    mViewModel.setAutoconfig(false);
+                    mViewModel.setCurrentStep(1);
+                }
+            }
+        }
     }
 
     @Override
