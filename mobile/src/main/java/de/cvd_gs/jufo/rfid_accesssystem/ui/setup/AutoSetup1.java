@@ -78,9 +78,18 @@ public class AutoSetup1 extends Fragment {
         nfcDoorOpener = autosetup1.findViewById(R.id.textViewNFCOpen);
         Button buttonContinue = getActivity().findViewById(R.id.buttonForward);
         buttonContinue.setText(getText(R.string.finishSetup));
+        String url = "";
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        String url = mViewModel.getAutoconfig_url();
-        Log.d("RECIVED URL", url);
+        try {
+            url = mViewModel.getAutoconfig_url();
+            Log.d("RECIVED URL", url);
+        }
+        catch (NullPointerException e)
+        {
+            e.printStackTrace();
+            Button buttonBack = getActivity().findViewById(R.id.buttonBack);
+            buttonBack.performClick();
+        }
         final StringRequest authenticate = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

@@ -60,11 +60,14 @@ public class SetupActivity extends AppCompatActivity {
                     switch (step)
                     {
                         case 0:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new AutoSetup0()).commit();
+                            progressBar.setProgress(1);
+                            progressBar.setMax(2);
                             buttonBack.setEnabled(true);
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new AutoSetup1()).commit();
+                            progressBar.setProgress(2);
                             buttonForward.setText(R.string.finishSetup);
                             buttonBack.setEnabled(true);
                             break;
@@ -85,27 +88,34 @@ public class SetupActivity extends AppCompatActivity {
                     switch (step)
                     {
                         case 0:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup1()).commit();
+                            progressBar.setProgress(1);
+                            progressBar.setMax(6);
                             buttonBack.setEnabled(true);
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup2()).commit();
+                            progressBar.setProgress(2);
                             buttonBack.setEnabled(true);
                             break;
                         case 2:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup3()).commit();
+                            progressBar.setProgress(3);
                             buttonBack.setEnabled(true);
                             break;
                         case 3:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup4()).commit();
+                            progressBar.setProgress(4);
                             buttonBack.setEnabled(true);
                             break;
                         case 4:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup5()).commit();
+                            progressBar.setProgress(5);
                             buttonBack.setEnabled(true);
                             break;
                         case 5:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup6()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_r, R.anim.slide_out_l, 0, 0).replace(fragmentContainer, new Setup6()).commit();
+                            progressBar.setProgress(6);
                             buttonForward.setText(R.string.finishSetup);
                             buttonBack.setEnabled(true);
                             break;
@@ -136,10 +146,14 @@ public class SetupActivity extends AppCompatActivity {
                         case 0:
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup0()).commit();
+                            progressBar.setProgress(0);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup0()).commit();
+                            buttonBack.setEnabled(false);
                             break;
                         case 2:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
+                            progressBar.setProgress(1);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new AutoSetup0()).commit();
+                            buttonForward.setText(R.string.setup_next);
                             break;
                     }
                     step--;
@@ -150,28 +164,34 @@ public class SetupActivity extends AppCompatActivity {
                     switch (step)
                     {
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup0()).commit();
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup0()).commit();
+                            progressBar.setProgress(0);
                             buttonBack.setEnabled(false);
                             break;
                         case 2:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup1()).commit();
+                            progressBar.setProgress(1);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup1()).commit();
                             buttonBack.setEnabled(true);
                             break;
                         case 3:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup2()).commit();
+                            progressBar.setProgress(2);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup2()).commit();
                             buttonBack.setEnabled(true);
                             break;
                         case 4:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup3()).commit();
+                            progressBar.setProgress(3);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup3()).commit();
                             buttonBack.setEnabled(true);
                             break;
                         case 5:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup4()).commit();
+                            progressBar.setProgress(4);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup4()).commit();
                             buttonBack.setEnabled(true);
                             break;
                         case 6:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup5()).commit();
-                            buttonForward.setText(R.string.finishSetup);
+                            progressBar.setProgress(5);
+                            fragmentManager.beginTransaction().setCustomAnimations(R.anim.slide_in_l, R.anim.slide_out_r, 0, 0).replace(fragmentContainer, new Setup5()).commit();
+                            buttonForward.setText(R.string.setup_next);
                             buttonBack.setEnabled(true);
                             break;
 
