@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="de.cvd_gs.jufo.rfid_accesssystem.MainActivity">
+    <item
+        android:id="@+id/menu_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/menu_home"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_activityLog"
+        android:icon="@drawable/ic_insert_chart_black_24dp"
+        android:title="@string/menu_activityLog"
+        android:visible="true" />
+    <item
+        android:id="@+id/menu_nfcOpen"
+        android:icon="@drawable/ic_nfc_black_24dp"
+        android:title="@string/menu_nfcOpen" />
+    <item
+        android:id="@+id/menu_account"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/menu_account"
+        android:visible="true" />
+</menu>
