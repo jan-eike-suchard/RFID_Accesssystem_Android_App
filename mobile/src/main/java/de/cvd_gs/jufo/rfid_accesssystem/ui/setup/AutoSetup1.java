@@ -1,30 +1,22 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Context;
-import android.content.SharedPreferences;
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.nfc.NfcAdapter;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.os.Handler;
-import android.os.Looper;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -37,7 +29,6 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -156,19 +147,12 @@ public class AutoSetup1 extends Fragment {
                         nfcDoorOpener.setTypeface(nfcDoorOpener.getTypeface(), Typeface.BOLD);
                     }
                     ProgressBar progressFetchData = autosetup1.findViewById(R.id.progressBar2);
-                    ImageView setupCompleted = autosetup1.findViewById(R.id.imageView3);
                     progressFetchData.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.fade_out));
-                    setupCompleted.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     ProgressBar progressFetchData = autosetup1.findViewById(R.id.progressBar2);
-                    ImageView setupCompleted = autosetup1.findViewById(R.id.imageView3);
                     progressFetchData.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.fade_out));
-                    setupCompleted.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
                     Drawable errorImage = autosetup1.getResources().getDrawable(R.drawable.ic_clear_black_24dp);
-                    setupCompleted.setImageDrawable(errorImage);
-                    TextView qr_read = autosetup1.findViewById(R.id.textView3);
-                    qr_read.setText(e.toString());
 
                 }
 
@@ -178,13 +162,8 @@ public class AutoSetup1 extends Fragment {
             public void onErrorResponse(VolleyError error) {
                 Log.e("ERROR", error.toString());
                 ProgressBar progressFetchData = autosetup1.findViewById(R.id.progressBar2);
-                ImageView setupCompleted = autosetup1.findViewById(R.id.imageView3);
                 progressFetchData.startAnimation(AnimationUtils.loadAnimation(getContext(),R.anim.fade_out));
-                setupCompleted.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-                Drawable errorImage = autosetup1.getResources().getDrawable(R.drawable.ic_clear_black_24dp);
-                setupCompleted.setImageDrawable(errorImage);
-                TextView qr_read = autosetup1.findViewById(R.id.textView3);
-                qr_read.setText(error.toString());
+
             }
 
         }) {

@@ -1,6 +1,6 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModel;
 
 import java.util.UUID;
 

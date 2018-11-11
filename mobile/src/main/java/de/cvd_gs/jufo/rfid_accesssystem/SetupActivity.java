@@ -1,22 +1,21 @@
 package de.cvd_gs.jufo.rfid_accesssystem;
 
 import android.Manifest;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.material.snackbar.Snackbar;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProviders;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup0;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.AutoSetup1;
 import de.cvd_gs.jufo.rfid_accesssystem.ui.setup.Setup0;
@@ -40,7 +39,7 @@ public class SetupActivity extends AppCompatActivity {
         mViewModel = ViewModelProviders.of(this).get(SetupViewModel.class);
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, Setup0.newInstance())
+                    .replace(R.id.container, new AutoSetup0())
                     .commitNow();
         }
         final FragmentManager fragmentManager = getSupportFragmentManager();

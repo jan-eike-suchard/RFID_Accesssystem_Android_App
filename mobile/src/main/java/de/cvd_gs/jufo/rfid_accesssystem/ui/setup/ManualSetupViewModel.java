@@ -1,6 +1,7 @@
 package de.cvd_gs.jufo.rfid_accesssystem.ui.setup;
 
-import androidx.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModel;
+
 
 public class ManualSetupViewModel extends ViewModel {
     public String server_address;

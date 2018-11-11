@@ -1,5 +1,6 @@
 package de.cvd_gs.jufo.rfid_accesssystem;
 
+import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -25,13 +26,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     /*
     Benötigte Variablen
@@ -39,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
     private boolean cardRead = false;
+    private String lastName;
+    private String firstName;
 
 
     @Override
@@ -52,7 +50,6 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
-        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_login);
         ImageView nfcStatus = findViewById(R.id.imageView);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
@@ -123,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
     private void nfcLogin(final String uid) {
         SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE);
         String server_address = preferences.getString("server", null);
-        final String api_key = preferences.getString("api_key", "none");
+        final String api_key = preferences.getString("api_key", null);
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://" + server_address + "/api/authenticate.php";
         StringRequest authenticate = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -135,13 +132,8 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean authenticated = jsonObject.getBoolean("authenticated");
                     if (authenticated)
                     {
-                        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
-                        if (i != null) {
-                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        }
-                        startActivity(i);
-                        finish();
+                        Intent nextActivity = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(nextActivity);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -158,10 +150,12 @@ public class LoginActivity extends AppCompatActivity {
         {
             @Override
             protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<>();
                 params.put("mode", "nfc");
                 params.put("uid", uid);
-                params.put("api", api_key);
+                if (api_key != null) {
+                    params.put("api", api_key);
+                }
                 return params;
             }
         };
@@ -175,10 +169,9 @@ public class LoginActivity extends AppCompatActivity {
             return null;
         }
         char[] buffer = new char[2];
-        for (int i = 0; i<src.length;i++)
-        {
-            buffer[0] = Character.forDigit((src[i] >>> 4) & 0x0F, 16);
-            buffer[1] = Character.forDigit(src[i] & 0x0F, 16);
+        for (byte aSrc : src) {
+            buffer[0] = Character.forDigit((aSrc >>> 4) & 0x0F, 16);
+            buffer[1] = Character.forDigit(aSrc & 0x0F, 16);
             System.out.println(buffer);
             stringBuilder.append(buffer);
         }

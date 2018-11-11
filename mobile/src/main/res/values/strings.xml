@@ -40,5 +40,17 @@
     <string name="setup2_enterPort">Please enter the port, according to the port of the webinterface</string>
     <string name="cameraPermission">Camera permission missing. Continue with manual setup</string>
     <string name="cameraPermissionGranted">Since the camera permission was granted you can now use the automatic setup</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="summary_dataRecived">Data recived</string>
 
 </resources>
