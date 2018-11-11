@@ -3,26 +3,30 @@ package de.cvd_gs.jufo.rfid_accesssystem;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.*;
-import com.android.volley.toolbox.*;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 /**
  * A login screen that offers login via email/password.
@@ -34,12 +38,7 @@ public class LoginActivity extends AppCompatActivity {
      */
     private NfcAdapter nfcAdapter;
     private PendingIntent pendingIntent;
-    private IntentFilter[] intentFilters;
-    private String[][] techLists;
-    private IntentFilter[] intentFiltersArray;
     private boolean cardRead = false;
-    private String firstName;
-    private String lastName;
 
 
     @Override
@@ -57,7 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ImageView nfcStatus = findViewById(R.id.imageView);
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        //nfcAdapter.enableReaderMode(this, null,NfcAdapter.FLAG_READER_NO_PLATFORM_SOUNDS, null);
         if (nfcAdapter == null)
         {
             //TODO: Disable NFC Symbol
@@ -110,9 +108,11 @@ public class LoginActivity extends AppCompatActivity {
             Log.wtf("TAG REVICED", tag.toString());
             String uid;
             uid = bytesToHexString(tag.getId());
-            uid = uid.toUpperCase();
+            if (uid != null) {
+                uid = uid.toUpperCase();
+            }
             Log.wtf("NFC ID", uid);
-            //nfcLogin(uid);
+            nfcLogin(uid);
         }
         else
         {
@@ -135,7 +135,13 @@ public class LoginActivity extends AppCompatActivity {
                     Boolean authenticated = jsonObject.getBoolean("authenticated");
                     if (authenticated)
                     {
-
+                        Intent i = getBaseContext().getPackageManager().getLaunchIntentForPackage(getBaseContext().getPackageName());
+                        if (i != null) {
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        }
+                        startActivity(i);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
