@@ -45,6 +45,14 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences preferences = getPreferences(MODE_PRIVATE);
+        Boolean firstrun = preferences.getBoolean("firstrun", true);
+        if (firstrun)
+        {
+            Intent intent = new Intent(this, SetupActivity.class);
+            startActivity(intent);
+            finish();
+        }
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_login);
         ImageView nfcStatus = findViewById(R.id.imageView);
