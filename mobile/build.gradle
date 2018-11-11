@@ -1,6 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        debugShared {
+            keyAlias 'Shared Debug Key'
+            keyPassword 'debug2018'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "de.cvd_gs.jufo.rfid_accesssystem"
@@ -20,7 +26,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.android.support.constraint:constraint-layout'

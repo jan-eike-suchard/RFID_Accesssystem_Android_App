@@ -134,15 +134,12 @@ public class SetupActivity extends AppCompatActivity {
                     switch (step)
                     {
                         case 0:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
                             break;
                         case 1:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
-                            buttonForward.setText(R.string.finishSetup);
-                            buttonBack.setEnabled(false);
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new Setup0()).commit();
                             break;
                         case 2:
-                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup1()).commit();
+                            fragmentManager.beginTransaction().replace(fragmentContainer, new AutoSetup0()).commit();
                             break;
                     }
                     step--;
@@ -203,13 +200,12 @@ public class SetupActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 {
                     Snackbar.make(this.findViewById(R.id.setupLayout), R.string.cameraPermissionGranted, Snackbar.LENGTH_LONG).show();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
-                    mViewModel.setAutoconfig(false);
-                    mViewModel.setCurrentStep(1);
+
                 }
                 else
                 {
                     Snackbar.make(this.findViewById(R.id.setupLayout), R.string.cameraPermission, Snackbar.LENGTH_LONG).show();
+                    Log.w("PERMISSION ERROR", "camera_denied");
                     getSupportFragmentManager().beginTransaction().replace(R.id.container, new Setup1()).commit();
                     mViewModel.setAutoconfig(false);
                     mViewModel.setCurrentStep(1);
